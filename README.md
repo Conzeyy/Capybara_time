@@ -1,3 +1,1 @@
 # Capybara_time
-
-HELLO
