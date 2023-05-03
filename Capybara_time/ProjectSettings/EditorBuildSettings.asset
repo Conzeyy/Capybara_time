@@ -6,12 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/NewMenu.unity
+    guid: e9eb2745a242d3141894a94e677960bb
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 5bdcc402fae97364d8af861837d0c4af
   - enabled: 0
-    path: Assets/Scenes/PlayerUI.unity
-    guid: 1c2965feb57491a4fb65a15be879b2a7
-  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/AI.unity
+    guid: 83353c9955746464f80e698e107c0acc
+  - enabled: 1
+    path: Assets/Scenes/Tylers Scene.unity
+    guid: 38166a84f9ff6d2479fca15d040556d6
+  - enabled: 1
     path: Assets/Scenes/Scene.unity
     guid: 4b517694a5bad1f439286b1c4b138bf8
+  - enabled: 0
+    path: Assets/Scenes/Select Map.unity
+    guid: ffba87e3387a7a0449e55bacbe293532
   m_configObjects: {}

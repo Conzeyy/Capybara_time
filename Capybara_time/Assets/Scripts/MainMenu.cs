@@ -3,42 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Created by Tyler Costa 19075541
+ */
+
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField]
-    private AudioClip _audioClip;
-    private AudioSource _audioSource;
+
+    private int _mapID;
 
 
-    // Start is called before the first frame update
-    void Start()
+    public void loadMap(int _inputMapID)
     {
-        _audioSource = GetComponent<AudioSource>();
+        _mapID = _inputMapID;
 
-        if (_audioSource == null)
-        {
-            Debug.LogError("Audio Source is null!");
-        }
-        else
-        {
-            _audioSource.clip = _audioClip;
-        }
+        StartGame(_mapID);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame(int mapID)
     {
-     //   PlayAudio();
-    }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
-    }
+    /*
+     * Map IDs:
+     * 0 = Main menu
+     * 1 = Connors Map
+     * 2 = Tylers Map
+     * 3 = Jaydens Map
+     * 4 = Nghias Map
+     */
+     SceneManager.LoadScene(mapID);
 
-    public void PlayAudio()
+    
+
+}
+    public void QuitGame()
     {
-        
-        _audioSource.Play();
+        Debug.Log("Quit!");
+        Application.Quit();
     }
+   
 }
