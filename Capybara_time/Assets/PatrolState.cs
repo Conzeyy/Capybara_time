@@ -6,6 +6,7 @@ using UnityEngine;
 public class PatrolState : StateMachineBehaviour
 {
     float timer;
+    float timePeriod;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
@@ -18,6 +19,7 @@ public class PatrolState : StateMachineBehaviour
         agent = animator.GetComponent<NavMeshAgent>();
         agent.speed = 1.5f;
         timer = 0;
+        timePeriod = 60f;
         GameObject gOway = GameObject.FindGameObjectWithTag("Waypoints");
         foreach (Transform t in gOway.transform)
             wayPoints.Add(t);
@@ -32,12 +34,17 @@ public class PatrolState : StateMachineBehaviour
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
 
         timer += Time.deltaTime;
-        if (timer > 15)
-            animator.SetBool("isPatrolling", false);
+        if(timer >= timePeriod){
+            timer = timer - timePeriod;
+                animator.SetBool("isPatrolling", false);
+                animator.SetBool("isChasing", true);    
+        }
 
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance < chaseRange)
             animator.SetBool("isChasing", true);
+
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -58,3 +65,4 @@ public class PatrolState : StateMachineBehaviour
         // Implement code that sets up animation IK (inverse kinematics)
     }
 }
+
