@@ -10,9 +10,13 @@ public class AudioPlayer : MonoBehaviour
 {
     [SerializeField]
     private AudioClip _audioClip;
+    [SerializeField]
+    private AudioClip _secondaudioClip;
+
     private AudioSource _audioSource;
 
     private bool playmusic = false;
+    private bool isCoolingDown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +31,8 @@ public class AudioPlayer : MonoBehaviour
         {
             _audioSource.clip = _audioClip;
         }
+        
     }
-
-
 
     //Plays main menu music
     public void playMainMenuMusic()
@@ -48,6 +51,36 @@ public class AudioPlayer : MonoBehaviour
             _audioSource.Pause();
 
         }
+    }
+
+    public void foodTrayCollected()
+    {
+
+        if (isCoolingDown == false)
+        {
+            StartCoroutine(AudioCoolDownLoop(_secondaudioClip));
+
+        }
+    }
+
+    public void keyCollected()
+    {
+        if (isCoolingDown == false)
+        {
+            StartCoroutine(AudioCoolDownLoop(_audioClip));
+
+        }
+    }
+
+    IEnumerator AudioCoolDownLoop(AudioClip audio)
+    {
+        isCoolingDown = true;
+        //_audioSource.Play(); 
+        _audioSource.clip = audio;
+        _audioSource.Play();
+        yield return new WaitForSeconds(0.3f);
+
+        isCoolingDown = false;
     }
 
     // Update is called once per frame

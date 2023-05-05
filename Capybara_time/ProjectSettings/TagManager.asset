@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Door
   - Victory
+  - Key
+  - FoodTray
   layers:
   - Default
   - TransparentFX
