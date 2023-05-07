@@ -3825,7 +3825,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 2800000, guid: eab3bb5631354264c876ce3c6616fb08, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4522,6 +4522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 989f88483efc10244bf9c079fc6ad9cf, type: 3}
+  _secondaudioClip: {fileID: 0}
 --- !u!82 &1766762494
 AudioSource:
   m_ObjectHideFlags: 0

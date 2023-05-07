@@ -14,13 +14,12 @@ public class UserInterfaceController : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _ScoreText;
-    private TextMeshProUGUI _TimeText;
+    [SerializeField]
+    private TextMeshProUGUI _MessageText;
+    [SerializeField]
     private TextMeshProUGUI _objectiveText;
 
-    //public Animator enemyAnimator;
-    public GameObject enemy;
-
-    //private PatrolState patrolState;
+    bool keyFound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +27,47 @@ public class UserInterfaceController : MonoBehaviour
         
 
         _ScoreText.text = "Food collected: " + 0;
-         enemy = GameObject.FindWithTag("Enemy");
+
 
     }
-
-    public void updateText()
+    
+    public void updateObjectiveText(bool hasKey)
     {
-        
+        if(hasKey == false)
+        {
+            //Key not found
+            _objectiveText.text = "Find a key to escape!";
+
+        } else
+        {
+            //key found
+            
+            _objectiveText.text = "Find the exit and escape!";
+        }
+
+        keyFound = hasKey;
+    }
+
+    public void updateMessageText(bool isHunting)
+    {
+        if (isHunting == false && keyFound == false)
+        {
+            _MessageText.text = "Capybara is not hunting!";
+            _objectiveText.text = "Objective: Find a key to escape";
+        }
+        else if (isHunting == true)
+        {
+            _MessageText.text = "Capybara is hunting you!";
+
+        }
     }
 
     public void UpdateScore(int playerScore)
     {
         _ScoreText.text = "Food collected: " + playerScore;
     }
+
+   // public void update
 
     // Update is called once per frame
     void Update()

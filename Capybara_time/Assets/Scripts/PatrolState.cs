@@ -40,7 +40,7 @@ public class PatrolState : StateMachineBehaviour
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
         }
         timer += Time.deltaTime;
-        Debug.Log(timer);
+        //Debug.Log(timer);
         if (timer > 15)
         {
             isPatrolling = false;

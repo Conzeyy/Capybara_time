@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodCollected: 0
+  _UIManager: {fileID: 0}
 --- !u!114 &7636322582541622545
 MonoBehaviour:
   m_ObjectHideFlags: 0

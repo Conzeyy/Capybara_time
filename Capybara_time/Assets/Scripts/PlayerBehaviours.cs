@@ -12,6 +12,8 @@ public class PlayerBehaviours : MonoBehaviour
     [SerializeField]
     private UserInterfaceController _UIManager;
 
+    bool hasKey = false;
+
     private GameObject _key;
 
     // Start is called before the first frame update
@@ -48,8 +50,10 @@ public class PlayerBehaviours : MonoBehaviour
 
         if (other.tag == "Key")
         {
-            Debug.Log("KEY!");
+            Debug.Log("KEY Collected!");
             FindAnyObjectByType<AudioPlayer>().keyCollected();
+            hasKey = true;
+            changeObjective(hasKey);
            
             
         }
@@ -66,6 +70,11 @@ public class PlayerBehaviours : MonoBehaviour
     
     }
 
+    public void changeObjective(bool hasKey)
+    {
+        _UIManager.updateObjectiveText(hasKey);
+
+    }
     public void AddScore(int foodCollected)
     {
         _UIManager.UpdateScore(foodCollected);
