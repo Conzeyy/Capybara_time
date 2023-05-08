@@ -8,12 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e9eb2745a242d3141894a94e677960bb
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: 5bdcc402fae97364d8af861837d0c4af
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/AI.unity
     guid: 83353c9955746464f80e698e107c0acc
@@ -23,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene.unity
     guid: 4b517694a5bad1f439286b1c4b138bf8
-  - enabled: 0
-    path: Assets/Scenes/Select Map.unity
-    guid: ffba87e3387a7a0449e55bacbe293532
+  - enabled: 1
+    path: Assets/Scenes/Nghia Scene.unity
+    guid: f43ab9021bf17e641b701e10e8fb0316
   m_configObjects: {}

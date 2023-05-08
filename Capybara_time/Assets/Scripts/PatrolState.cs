@@ -5,15 +5,22 @@ using UnityEngine;
 
 public class PatrolState : StateMachineBehaviour
 {
-    float timer;
+    public float timer;
     List<Transform> wayPoints = new List<Transform>();
     NavMeshAgent agent;
     Transform player;
     float chaseRange = 5;
+    public bool isPatrolling;
+    [SerializeField]
+    private UserInterfaceController UIManager;
+
+    public GameObject enemyObject;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
+        isPatrolling = true;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = animator.GetComponent<NavMeshAgent>();
         agent.speed = 1.5f;
@@ -29,15 +36,23 @@ public class PatrolState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (agent.remainingDistance <= agent.stoppingDistance)
+        {
             agent.SetDestination(wayPoints[Random.Range(0, wayPoints.Count)].position);
-
+        }
         timer += Time.deltaTime;
+        //Debug.Log(timer);
         if (timer > 15)
+        {
+            isPatrolling = false;
             animator.SetBool("isPatrolling", false);
-
+        }
         float distance = Vector3.Distance(player.position, animator.transform.position);
         if (distance < chaseRange)
+        {
+
+            isPatrolling = false;
             animator.SetBool("isChasing", true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
