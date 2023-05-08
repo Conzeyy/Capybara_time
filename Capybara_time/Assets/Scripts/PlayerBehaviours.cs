@@ -45,7 +45,6 @@ public class PlayerBehaviours : MonoBehaviour
             //Debug.Log("Contact with door!");
             FindObjectOfType<GameManager>().victoryEndGame();
             FindObjectOfType<PlayerMovement_and_PlayerLook>().isPlayerAlive = false;
-
         }
 
         if (other.tag == "Key")
