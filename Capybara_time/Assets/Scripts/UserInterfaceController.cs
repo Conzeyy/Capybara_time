@@ -19,6 +19,7 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _objectiveText;
 
+
     bool keyFound = false;
 
     // Start is called before the first frame update
@@ -69,10 +70,5 @@ public class UserInterfaceController : MonoBehaviour
 
    // public void update
 
-    // Update is called once per frame
-    void Update()
-    {
-        
 
-    }
 }

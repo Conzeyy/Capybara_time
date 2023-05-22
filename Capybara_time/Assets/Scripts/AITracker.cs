@@ -28,7 +28,7 @@ public class AITracker : MonoBehaviour
             isMoving = true;
             AddText(true);
             lastPosition = transform.position;
-            Debug.Log("AI is moving");
+            //Debug.Log("AI is moving");
         }
         else
         {
