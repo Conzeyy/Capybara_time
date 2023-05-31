@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
     private GameObject _failGameOverScreen;
     [SerializeField]
     private GameObject _debugUI;
+    [SerializeField]
+    private GameObject _notHuntingUI;
+
+
     bool isDebugOn = false;
     bool issleepBetweenPresses = false;
     private int fps;
@@ -37,6 +41,7 @@ public class GameManager : MonoBehaviour
         if (_victoryGameOverScreen != null)
         {
             _victoryGameOverScreen.SetActive(true);
+            hideUI();
 
         }
         else
@@ -52,10 +57,23 @@ public class GameManager : MonoBehaviour
         if(_failGameOverScreen != null)
         {
             _failGameOverScreen.SetActive(true);
+            hideUI();
         }
         else
         {
             Debug.LogError("Cant find failed game over screen!");
+        }
+    }
+
+    void hideUI()
+    {
+        if(_notHuntingUI != null)
+        {
+            _notHuntingUI.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Cant find not Hunting UI!");
         }
     }
 
