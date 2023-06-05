@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject foodTrays; // The prefab of the object you want to spawn
     public int numberOfObjects = 500; // The number of objects to spawn
-    private float _spawnRange = 40f; // The range within which objects will spawn
+    private float _spawnRange = 80f; // The range within which objects will spawn
 
     private void Start()
     {
