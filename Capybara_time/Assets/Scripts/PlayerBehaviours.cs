@@ -9,6 +9,7 @@ public class PlayerBehaviours : MonoBehaviour
     [SerializeField]
     private int foodCollected = 0;
 
+
     [SerializeField]
     private UserInterfaceController _UIManager;
 
