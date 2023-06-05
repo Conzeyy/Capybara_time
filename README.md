@@ -15,11 +15,10 @@ On your keyboard use A to move left, S to move backward, W to move forward, D to
 If you get caught by the capybara before getting to escape door with the key, it's game over!
 
 ## Author
-Tyler Costa
-Conor Stewart
-Nghia Pham
+Tyler Costa -
+Conor Stewart -
+Nghia Pham -
 Juwan Koo
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
