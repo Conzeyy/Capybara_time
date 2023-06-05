@@ -36,7 +36,7 @@ public class AITracker : MonoBehaviour
 
             //Cappy is not hunting
             isMoving = false;
-            //Debug.Log("AI not moving");
+            Debug.Log("AI not moving");
 
         }
         AIpositon = transform.position;

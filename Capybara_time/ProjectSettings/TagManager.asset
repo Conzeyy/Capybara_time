@@ -10,7 +10,6 @@ TagManager:
   - Victory
   - Key
   - FoodTray
-  - HuntingUI
   layers:
   - Default
   - TransparentFX
