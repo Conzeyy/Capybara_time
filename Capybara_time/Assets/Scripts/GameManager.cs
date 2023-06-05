@@ -32,19 +32,8 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI _tickCounter;
     [SerializeField]
     private TextMeshProUGUI _timer;
-    [SerializeField]
-    private GameObject _LeaderBoard;
 
-    public void showLeaderBoard()
-    {
-        if(_LeaderBoard != null)
-        {
-            _LeaderBoard.SetActive(true);
-        } else
-        {
-            Debug.LogError("Cant find Leader board object!");
-        }
-    }
+
     public void victoryEndGame()
     {
         Debug.Log("Game Over! [VICTORY]");
@@ -53,7 +42,6 @@ public class GameManager : MonoBehaviour
         {
             _victoryGameOverScreen.SetActive(true);
             hideUI();
-            showLeaderBoard();
 
         }
         else
@@ -70,7 +58,6 @@ public class GameManager : MonoBehaviour
         {
             _failGameOverScreen.SetActive(true);
             hideUI();
-            showLeaderBoard();
         }
         else
         {
@@ -130,7 +117,7 @@ public class GameManager : MonoBehaviour
     private void LateUpdate()
     {
         fps = Mathf.RoundToInt(1.0f / deltaTime);
-        //Debug.Log("FPS: " + fps);
+        Debug.Log("FPS: " + fps);
     }
 
     private IEnumerator sleepBetweenPresses()
@@ -139,6 +126,5 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.1f);  // Adjust the delay duration as needed
         issleepBetweenPresses = false;
     }
-
 
 }

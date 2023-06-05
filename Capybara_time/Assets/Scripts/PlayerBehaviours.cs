@@ -12,9 +12,6 @@ public class PlayerBehaviours : MonoBehaviour
     [SerializeField]
     private UserInterfaceController _UIManager;
 
-
-
-
     bool hasKey = false;
 
     private GameObject _key;
@@ -82,8 +79,4 @@ public class PlayerBehaviours : MonoBehaviour
         _UIManager.UpdateScore(foodCollected);
 
     }
-
-
-
-
 }

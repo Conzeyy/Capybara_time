@@ -11,8 +11,6 @@ using UnityEngine.Animations;
 public class UserInterfaceController : MonoBehaviour
 {
 
-    [SerializeField]
-    private LeaderBoardManager _LeaderBoardManager;
 
     [SerializeField]
     private TextMeshProUGUI _ScoreText;
@@ -21,7 +19,6 @@ public class UserInterfaceController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _objectiveText;
 
-    private int score;
 
     bool keyFound = false;
 
@@ -35,8 +32,6 @@ public class UserInterfaceController : MonoBehaviour
 
     }
     
- 
-
     public void updateObjectiveText(bool hasKey)
     {
         if(hasKey == false)
@@ -71,14 +66,9 @@ public class UserInterfaceController : MonoBehaviour
     public void UpdateScore(int playerScore)
     {
         _ScoreText.text = "Food collected: " + playerScore;
-        setScore(playerScore);
     }
 
-    public void setScore (int playerScore)
-    {
-        //return this.score;
-        _LeaderBoardManager.setPlayerScore(playerScore);
-    }
+   // public void update
 
 
 }
