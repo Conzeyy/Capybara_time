@@ -12,6 +12,8 @@ public class AudioPlayer : MonoBehaviour
     private AudioClip _audioClip;
     [SerializeField]
     private AudioClip _secondaudioClip;
+    [SerializeField]
+    private AudioClip _enemyaudioClip;
 
     private AudioSource _audioSource;
 
@@ -51,6 +53,20 @@ public class AudioPlayer : MonoBehaviour
             _audioSource.Pause();
 
         }
+    }
+
+    public void enemyWarning(bool canPlay)
+    {
+        if (isCoolingDown == false && canPlay == true)
+        {
+            StartCoroutine(AudioCoolDownLoop(_enemyaudioClip));
+
+        } else
+        {
+            StopCoroutine(AudioCoolDownLoop(_enemyaudioClip));
+
+        }
+
     }
 
     public void foodTrayCollected()

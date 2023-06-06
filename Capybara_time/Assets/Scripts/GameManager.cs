@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 
 //Created by Tyler Costa 19075541
@@ -16,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _failGameOverScreen;
+    [SerializeField]
+    private GameObject _optionsMenu;
+ 
     [SerializeField]
     private GameObject _debugUI;
     [SerializeField]
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
     private float deltaTime = 0.0f;
     public float startTime;
     public float distanceThreshold = 5f;
+    public AudioPlayer audio;
 
     [SerializeField]
     private TextMeshProUGUI _framesCounter;
@@ -47,6 +53,26 @@ public class GameManager : MonoBehaviour
     private GameObject _LeaderBoard;
     [SerializeField]
     private TextMeshProUGUI _capyCloseLabel;
+    [SerializeField]
+    private TextMeshProUGUI _difficultyButton;
+    [SerializeField]
+    private GameObject _miniMap;
+
+    public bool isGameHard = false;
+    public bool isChecked;
+
+    public void OnRadioButtonToggled(bool newState)
+    {
+
+
+        //Turns minimap off
+        isGameHard = true;
+            _miniMap.SetActive(false);
+                // Handle checked state
+                Debug.Log("Radio button is checked");
+
+    }
+
 
     public void stopEnemy()
     {
@@ -60,7 +86,9 @@ public class GameManager : MonoBehaviour
 
         }
     }
+    
 
+    
 
     public void showLeaderBoard()
     {
@@ -130,18 +158,29 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        audio = _player.GetComponent<AudioPlayer>();
+        
         startTime = Time.time;
         _enemy = GameObject.FindWithTag("Enemy");
         _player = GameObject.FindWithTag("Player");
         _notHuntingUI = GameObject.FindWithTag("HuntingUI");
        
 
-    }
 
-    // Update is called once per frame
-    void Update()
+}
+
+// Update is called once per frame
+void Update()
     {
-              
+
+
+        if (!Application.isFocused)
+        {
+            // Game focus is lost
+            pause();
+
+            // Perform actions when focus is lost, such as pausing the game, showing a pause menu, etc.
+        }
         // Calculate the distance between the current object and the target object
         //float distance = Vector3.Distance(transform.position, _enemy.transform.position);
 
@@ -154,14 +193,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("Objects are within the distance threshold!");
             //play music
             //showCloseLabel(true);
-            _capyCloseLabel.text = "HE IS CLOSE";
+            _capyCloseLabel.text = "HE'S ALSMOT GOT YOU!";
+
+            audio.enemyWarning(true);
         } else
         {
-            Debug.Log("Not in range");
-            //stop music
-            //showCloseLabel(false);
 
+         
             _capyCloseLabel.text = "";
+            audio.enemyWarning(false);
 
 
         }

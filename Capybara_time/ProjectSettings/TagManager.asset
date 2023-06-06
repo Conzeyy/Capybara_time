@@ -11,6 +11,8 @@ TagManager:
   - Key
   - FoodTray
   - HuntingUI
+  - OptionsMenu
+  - RADIOBUTTONS
   layers:
   - Default
   - TransparentFX
