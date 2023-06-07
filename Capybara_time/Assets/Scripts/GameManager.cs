@@ -4,30 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
+
 
 
 //Created by Tyler Costa 19075541
-
+//Improved since code review
 public class GameManager : MonoBehaviour
 {
+    //GameObjects accessible in Editor
     [SerializeField]
     private GameObject _victoryGameOverScreen;
     [SerializeField]
     private GameObject _pauseMenu;
-
     [SerializeField]
     private GameObject _failGameOverScreen;
     [SerializeField]
     private GameObject _optionsMenu;
- 
     [SerializeField]
     private GameObject _debugUI;
     [SerializeField]
     private GameObject _player;
     [SerializeField]
     private GameObject _enemy;
-
     private GameObject _notHuntingUI;
 
     public Transform player;
@@ -65,15 +63,16 @@ public class GameManager : MonoBehaviour
     {
 
 
-        //Turns minimap off
+        //Sets game difficulty to hard and disables minimap
         isGameHard = true;
-            _miniMap.SetActive(false);
-                // Handle checked state
-                Debug.Log("Radio button is checked");
+        _miniMap.SetActive(false);
+          
+        Debug.Log("Radio button is checked");
 
     }
 
 
+    //This code disables the enemy when called by victory and death screen functions
     public void stopEnemy()
     {
 
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour
     
 
     
-
+    //This shows the leaderboard
     public void showLeaderBoard()
     {
         if(_LeaderBoard != null)
@@ -100,6 +99,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Cant find Leader board object!");
         }
     }
+    //Displays the end game scene, hides player ui, disables enemy and shows leaderboard
     public void victoryEndGame()
     {
         Debug.Log("Game Over! [VICTORY]");
@@ -118,6 +118,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Displays the end game scene, hides player ui, disables enemy and shows leaderboard
+
     public void failEndGame()
     {
         Debug.Log("Game Over! [FAIL]");
@@ -134,6 +136,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Hides player UI
     void hideUI(bool state)
     {
         if(_notHuntingUI != null)
@@ -156,6 +159,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //gets time and instantiates player, enemy and UI objects on start
     void Start()
     {
         audio = _player.GetComponent<AudioPlayer>();
@@ -179,20 +183,17 @@ void Update()
             // Game focus is lost
             pause();
 
-            // Perform actions when focus is lost, such as pausing the game, showing a pause menu, etc.
+            
         }
-        // Calculate the distance between the current object and the target object
-        //float distance = Vector3.Distance(transform.position, _enemy.transform.position);
-
-        // Check if the distance is within the specified range
+        
+        
         float distance = Vector3.Distance(_player.transform.position, _enemy.transform.position);
         
-
+        //Displays message and plays audio
         if (distance <= distanceThreshold)
         {
             Debug.Log("Objects are within the distance threshold!");
-            //play music
-            //showCloseLabel(true);
+
             _capyCloseLabel.text = "HE'S ALSMOT GOT YOU!";
 
             audio.enemyWarning(true);
@@ -225,24 +226,14 @@ void Update()
            // StartCoroutine(sleepBetweenPresses());
 
         }
-        /*
-        //Resume
-        if (Input.GetKeyDown(KeyCode.Escape) && isPauseOpen == true && issleepBetweenPresses == false)
-        {
-            Debug.Log("Pause menu closed");
-            _pauseMenu.SetActive(false); ;
-            isPauseOpen = false;
-            Time.timeScale = 0f;
-           // StartCoroutine(sleepBetweenPresses());
 
-        }*/
         //Opens info UI
         if (Input.GetKeyDown(KeyCode.F5) && isDebugOn == false && issleepBetweenPresses == false)
         {
             Debug.Log("Debug Screen open");
             isDebugOn = true;
             _debugUI.SetActive(true);
-          // StartCoroutine(sleepBetweenPresses());
+
 
         }
 
@@ -255,6 +246,7 @@ void Update()
 
         }
 
+        //Gets FPS
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
         _framesCounter.text = fps + " fps";
         _tickCounter.text = "Tick: "+ tick++;
@@ -265,37 +257,23 @@ void Update()
 
     }
 
-    public void showCloseLabel(bool state)
-    {
-        if(state == true)
-        {
-            StartCoroutine(textFlash());
-        } else
-        {
-            StopCoroutine(textFlash());
-        }
-    }
 
+    //This uses Unity LateUpadte to get the current fps by dividing the amount of frames by 1 second
     private void LateUpdate()
     {
         fps = Mathf.RoundToInt(1.0f / deltaTime);
         //Debug.Log("FPS: " + fps);
     }
 
+    //Stops fps menu from opening/closing too quickly
     private IEnumerator sleepBetweenPresses()
     {
         issleepBetweenPresses = true;
         yield return new WaitForSeconds(.1f); 
         issleepBetweenPresses = false;
     }
-    private IEnumerator textFlash()
-    {
-        //_capyCloseLabel.SetActive(true);
-        yield return new WaitForSeconds(.1f);
-       // _capyCloseLabel.SetActive(false);
 
-    }
-
+    //handles pause menu, stops game, hides game ui and shows menu UI
     public void pause()
     {
         //pause
@@ -306,15 +284,15 @@ void Update()
         isPauseOpen = true;
     }
 
+
+    //Similar system for resume()
     public void resume()
     {
         _pauseMenu.SetActive(false);
         _notHuntingUI.SetActive(true);
 
-        //resume
         Time.timeScale = 1f;
         isPauseOpen = false;
-        //hideUI();
         stopCameraLook(true);
     }
 }

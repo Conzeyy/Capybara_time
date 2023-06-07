@@ -25,7 +25,7 @@ public class KeyScript : MonoBehaviour
 
     }
 
-
+    //Same code from food tray script
     IEnumerator keyBounce()
     {
         Vector3 startPosition = transform.position;

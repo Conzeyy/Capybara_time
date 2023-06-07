@@ -6,13 +6,13 @@ public class FoodTrayScript : MonoBehaviour
 {
     public float translationAmount = 1f;
     public float bounceDuration = 1f;
-    public float rotationDuration = 3f; // Duration for one complete revolution in seconds
+    public float rotationDuration = 3f; 
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(foodTrayBounce());
-        float rotationSpeed = 360f / rotationDuration; // Calculate rotation speed in degrees per second
+        float rotationSpeed = 360f / rotationDuration; 
         StartCoroutine(foodTrayRotate(rotationSpeed));
     }
 
@@ -25,7 +25,7 @@ public class FoodTrayScript : MonoBehaviour
     {
         while (true) // Infinite loop for continuous rotation
         {
-            transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f, Space.World); // Rotate the object on the Y-axis
+            transform.Rotate(0f, rotationSpeed * Time.deltaTime, 0f, Space.World); 
             yield return null; // Wait for the next frame
         }
     }
