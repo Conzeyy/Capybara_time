@@ -14,7 +14,7 @@ public class chaseState : StateMachineBehaviour
         animator.SetBool("isPatrolling", false);
        agent = animator.GetComponent<NavMeshAgent>();
        player = GameObject.FindGameObjectWithTag("Player").transform;
-       agent.speed = 3.5f;
+       agent.speed = 10.0f;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
