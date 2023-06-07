@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Waypoints
+  - Enemy
+  - Door
+  - Victory
+  - Key
+  - FoodTray
+  - HuntingUI
+  - OptionsMenu
+  - RADIOBUTTONS
   layers:
   - Default
   - TransparentFX
@@ -14,8 +23,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Minimap
+  - Level
   - 
   - 
   - 
